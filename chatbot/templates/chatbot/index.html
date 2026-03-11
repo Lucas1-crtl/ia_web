@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>DeepSide</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #202123;
+            color: white;
+            display: flex;
+            height: 100vh;
+        }
+
+        
+        .sidebar {
+            width: 25%;
+            background-color: #202123;
+            padding: 25px;
+            min-width: 300px;
+            max-width: 400px;
+        }
+
+        .sidebar h2 {
+            margin-top: 0;
+            font-size: 18px;
+            border-bottom: 1px solid #444;
+            padding-bottom: 10px;
+        }
+
+        .historico-item {
+            font-size: 18px;
+            margin-bottom: 12px;
+            padding: 14px;
+            background-color: #202123;
+            border-radius: 10px;
+        }
+
+        
+        .main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        
+        .titulo {
+            text-align: center;
+            font-size: 56px;
+            font-weight: 800;
+            margin-top: 40px;
+            letter-spacing: 2px;
+        }
+
+        
+        .chat-container {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .mensagem {
+            max-width: 60%;
+            padding: 12px 15px;
+            border-radius: 12px;
+            margin-bottom: 10px;
+            word-wrap: break-word;
+        }
+
+        .usuario {
+            background-color: #2e2e2e;
+            align-self: flex-end;
+            color: white;
+        }
+
+        .ia {
+            background-color: #202123;
+            align-self: flex-start;
+        }
+
+        
+        .form-container {
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            background-color: #202123;
+        }
+
+        .input-wrapper {
+            width: 80%;
+            display: flex;
+        }
+
+        input {
+            flex: 1;
+            padding: 20px;
+            border-radius: 16px;
+            border: none;
+            outline: none;
+            font-size: 20px;
+        }
+
+        button {
+            margin-left: 10px;
+            padding: 20px 30px;
+            border-radius: 16px;
+            font-size: 18px;
+            border: none;
+            background-color: #343535;
+            color: white;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        button:hover {
+            opacity: 0.9;
+        }
+    </style>
+</head>
+<body>
+
+
+<div class="sidebar">
+    <h2>Histórico</h2>
+
+ <form action="/limpar/" method="post">
+    {% csrf_token %}
+    <button type="submit">Nova conversa</button>
+</form>
+
+    {% for conversa in historico %}
+        <div class="historico-item">
+            {{ conversa.pergunta }}
+        </div>
+    {% endfor %}
+</div>
+
+
+<div class="main">
+
+    <div class="titulo">DeepSide</div>
+
+    <div class="chat-container" id="chat">
+        {% for conversa in historico %}
+            <div class="mensagem usuario">
+                {{ conversa.pergunta }}
+            </div>
+            <div class="mensagem ia">
+                {{ conversa.resposta }}
+            </div>
+        {% endfor %}
+    </div>
+
+    <form method="POST" class="form-container">
+        {% csrf_token %}
+        <div class="input-wrapper">
+            <input type="text" name="pergunta" placeholder="Pergunte algo..." autocomplete="off">
+            <button type="submit">Enviar</button>
+        </div>
+    </form>
+
+</div>
+
+<script>
+    const chat = document.getElementById("chat");
+    chat.scrollTop = chat.scrollHeight;
+</script>
+
+</body>
+</html>

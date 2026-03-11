@@ -1,0 +1,60 @@
+body {
+    background-color: #121212;
+    color: white;
+    font-family: Arial;
+    font-size: 18px;
+    display: flex;
+    justify-content: center;
+    margin-top: 100px;
+}
+
+.container {
+    text-align: center;
+    width: 400px;
+}
+
+input {
+    width: 100%;
+    padding: 15px;
+    margin: 10px 0;
+    font-size: 18px;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #e60b0b;
+    border: none;
+    color: white;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+.resposta {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #333;
+    font-size: 20px;
+}
+
+.titulo {
+    font-size: 48px;
+    font-weight: bold;
+}
+
+.nova-conversa {
+
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    border: none;
+    background-color: #787879;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+
+}
+
+.nova-conversa:hover {
+    opacity: 0.9;
+}
