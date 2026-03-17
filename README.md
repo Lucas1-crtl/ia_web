@@ -70,6 +70,14 @@ http://127.0.0.1:8000
 
 ---
 
+## Prompts(Palavras Chaves) para usar na IA
+["oi", "ola", "eai", "bom dia", "boa tarde", "boa noite"],
+["seu nome", "quem criou voce", "quem e voce"],
+["python", "django", "erro", "codigo"],
+["brasil", "curiosidades sobre o brasil","portugues","habitantes","Gigante territorial","história", "Cultura"],
+
+Bom uso da IA! Espero que gostem.
+
 ## 💡 Objetivo do projeto
 
 Este projeto foi desenvolvido para estudo de:
