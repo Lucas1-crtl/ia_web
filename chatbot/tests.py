@@ -30,9 +30,9 @@ def teste_gerar_resposta(): #Teste de Integração 1 forma (mais divertida)
 '''
 
 def teste_gerar_resposta(): #Teste de Integração 2 forma fixada (fixa a resposta que você escolher)
-    random.seed(1)
+    random.seed(3)
     resposta = gerar_resposta("oi")
-    assert resposta == "Olá! Como posso ajudar?"
+    assert resposta == "E aí! Em que posso ajudar?"
     
 
 '''
