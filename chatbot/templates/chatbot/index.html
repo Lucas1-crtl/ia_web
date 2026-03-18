@@ -36,7 +36,7 @@
             font-size: 18px;
             margin-bottom: 12px;
             padding: 14px;
-            background-color: #202123;
+            background-color: #2a2b2d;
             border-radius: 10px;
         }
 
@@ -133,7 +133,6 @@
 
         /* MOBILE */
         @media (max-width: 768px) {
-
             body {
                 flex-direction: column;
                 height: auto;
@@ -149,10 +148,8 @@
                 left: -100%;
                 height: 100%;
                 width: 260px;
-                background-color: #202123;
                 transition: 0.3s;
                 z-index: 999;
-                display: block;
             }
 
             .sidebar.active {
@@ -216,7 +213,7 @@
 <div class="main">
 
     <!-- BOTÃO MENU -->
-    <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+    <div class="menu-toggle" onclick="toggleMenu(event)">☰</div>
 
     <div class="titulo">DeepSide</div>
 
@@ -245,283 +242,20 @@
     const chat = document.getElementById("chat");
     chat.scrollTop = chat.scrollHeight;
 
-    function toggleMenu() {
+    function toggleMenu(event) {
+        event.stopPropagation(); // impede fechar ao clicar no botão
         const sidebar = document.getElementById("sidebar");
         sidebar.classList.toggle("active");
     }
 
-    // Fecha ao clicar fora
-    document.addEventListener("click", function(event) {
-        const sidebar = document.getElementById("sidebar");
-        const button = document.querySelector(".menu-toggle");
-
-        if (!sidebar.contains(event.target) && !button.contains(event.target)) {
-            sidebar.classList.remove("active");
-        }
+    // Impede fechar ao clicar dentro do menu
+    document.getElementById("sidebar").addEventListener("click", function(event) {
+        event.stopPropagation();
     });
-</script>
-
-</body>
-</html><!DOCTYPE html>
-<html>
-<head>
-    {% load static %}
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DeepSide</title>
-    <link rel="icon" href="{% static 'img/favicon2.png' %}">
-
-    <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background-color: #202123;
-            color: white;
-            display: flex;
-            height: 100vh;
-        }
-
-        /* SIDEBAR */
-        .sidebar {
-            width: 25%;
-            background-color: #202123;
-            padding: 25px;
-            min-width: 300px;
-            max-width: 400px;
-        }
-
-        .sidebar h2 {
-            margin-top: 0;
-            font-size: 18px;
-            border-bottom: 1px solid #444;
-            padding-bottom: 10px;
-        }
-
-        .historico-item {
-            font-size: 18px;
-            margin-bottom: 12px;
-            padding: 14px;
-            background-color: #202123;
-            border-radius: 10px;
-        }
-
-        /* MAIN */
-        .main {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            position: relative;
-        }
-
-        .titulo {
-            text-align: center;
-            font-size: 56px;
-            font-weight: 800;
-            margin-top: 40px;
-            letter-spacing: 2px;
-        }
-
-        .chat-container {
-            flex: 1;
-            padding: 20px;
-            overflow-y: auto;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .mensagem {
-            max-width: 60%;
-            padding: 12px 15px;
-            border-radius: 12px;
-            margin-bottom: 10px;
-            word-wrap: break-word;
-        }
-
-        .usuario {
-            background-color: #2e2e2e;
-            align-self: flex-end;
-        }
-
-        .ia {
-            background-color: #202123;
-            align-self: flex-start;
-        }
-
-        /* INPUT */
-        .form-container {
-            padding: 20px;
-            display: flex;
-            justify-content: center;
-            background-color: #202123;
-        }
-
-        .input-wrapper {
-            width: 80%;
-            display: flex;
-        }
-
-        input {
-            flex: 1;
-            padding: 20px;
-            border-radius: 16px;
-            border: none;
-            outline: none;
-            font-size: 20px;
-        }
-
-        button {
-            margin-left: 10px;
-            padding: 20px 30px;
-            border-radius: 16px;
-            font-size: 18px;
-            border: none;
-            background-color: #343535;
-            color: white;
-            cursor: pointer;
-            font-weight: bold;
-        }
-
-        button:hover {
-            opacity: 0.9;
-        }
-
-        /* BOTÃO HAMBURGUER */
-        .menu-toggle {
-            display: none;
-            position: fixed;
-            top: 15px;
-            left: 15px;
-            font-size: 28px;
-            cursor: pointer;
-            z-index: 1000;
-        }
-
-        /* MOBILE */
-        @media (max-width: 768px) {
-
-            body {
-                flex-direction: column;
-                height: auto;
-            }
-
-            .menu-toggle {
-                display: block;
-            }
-
-            .sidebar {
-                position: fixed;
-                top: 0;
-                left: -100%;
-                height: 100%;
-                width: 260px;
-                background-color: #202123;
-                transition: 0.3s;
-                z-index: 999;
-                display: block;
-            }
-
-            .sidebar.active {
-                left: 0;
-            }
-
-            .titulo {
-                font-size: 32px;
-                margin-top: 20px;
-            }
-
-            .chat-container {
-                padding: 10px;
-            }
-
-            .mensagem {
-                max-width: 90%;
-                font-size: 14px;
-            }
-
-            .form-container {
-                padding: 10px;
-            }
-
-            .input-wrapper {
-                width: 100%;
-            }
-
-            input {
-                font-size: 16px;
-                padding: 14px;
-            }
-
-            button {
-                padding: 14px 18px;
-                font-size: 14px;
-            }
-        }
-    </style>
-</head>
-
-<body>
-
-<!-- SIDEBAR -->
-<div class="sidebar" id="sidebar">
-    <h2>Histórico</h2>
-
-    <form action="/limpar/" method="post">
-        {% csrf_token %}
-        <button type="submit">Nova conversa</button>
-    </form>
-
-    {% for conversa in historico %}
-        <div class="historico-item">
-            {{ conversa.pergunta }}
-        </div>
-    {% endfor %}
-</div>
-
-<!-- MAIN -->
-<div class="main">
-
-    <!-- BOTÃO MENU -->
-    <div class="menu-toggle" onclick="toggleMenu()">☰</div>
-
-    <div class="titulo">DeepSide</div>
-
-    <div class="chat-container" id="chat">
-        {% for conversa in historico %}
-            <div class="mensagem usuario">
-                {{ conversa.pergunta }}
-            </div>
-            <div class="mensagem ia">
-                {{ conversa.resposta }}
-            </div>
-        {% endfor %}
-    </div>
-
-    <form method="POST" class="form-container">
-        {% csrf_token %}
-        <div class="input-wrapper">
-            <input type="text" name="pergunta" placeholder="Pergunte algo..." autocomplete="off">
-            <button type="submit">Enviar</button>
-        </div>
-    </form>
-
-</div>
-
-<script>
-    const chat = document.getElementById("chat");
-    chat.scrollTop = chat.scrollHeight;
-
-    function toggleMenu() {
-        const sidebar = document.getElementById("sidebar");
-        sidebar.classList.toggle("active");
-    }
 
     // Fecha ao clicar fora
-    document.addEventListener("click", function(event) {
-        const sidebar = document.getElementById("sidebar");
-        const button = document.querySelector(".menu-toggle");
-
-        if (!sidebar.contains(event.target) && !button.contains(event.target)) {
-            sidebar.classList.remove("active");
-        }
+    document.addEventListener("click", function() {
+        document.getElementById("sidebar").classList.remove("active");
     });
 </script>
 
