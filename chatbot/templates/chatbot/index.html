@@ -2,6 +2,7 @@
 <html>
 <head>
     {% load static %}
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DeepSide</title>
     <link rel="icon" href="{% static 'img/favicon2.png' %}">
     <style>
@@ -120,6 +121,68 @@
         button:hover {
             opacity: 0.9;
         }
+        @media (max-width: 768px) {
+
+    body {
+        flex-direction: column;
+        height: auto;
+    }
+
+    /* Sidebar vira topo */
+    .sidebar {
+        width: 100%;
+        max-width: 100%;
+        min-width: unset;
+        padding: 15px;
+        border-bottom: 1px solid #444;
+        display: none;
+    }
+
+    .sidebar h2 {
+        font-size: 16px;
+    }
+
+    .historico-item {
+        font-size: 14px;
+        padding: 10px;
+    }
+
+    /* Título menor */
+    .titulo {
+        font-size: 32px;
+        margin-top: 20px;
+    }
+
+    /* Chat ocupa tudo */
+    .chat-container {
+        padding: 10px;
+    }
+
+    .mensagem {
+        max-width: 90%;
+        font-size: 14px;
+    }
+
+    /* Input ajustado */
+    .form-container {
+        padding: 10px;
+    }
+
+    .input-wrapper {
+        width: 100%;
+    }
+
+    input {
+        font-size: 16px;
+        padding: 14px;
+    }
+
+    button {
+        padding: 14px 18px;
+        font-size: 14px;
+    }
+}
+
     </style>
 </head>
 <body>

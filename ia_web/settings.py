@@ -24,7 +24,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-c=0n3-qkp5g4$zi_+kyjc6r=*m57w(&d=^kf^0#^9r)+shl_n+'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+
+DEBUG = False # False= somente para deploys eternos com WSGI
+# True = somente para rodar servidor local como localhost 0800000
 
 ALLOWED_HOSTS = ['*'] # Define quantos aparelhos pode ser conectados 
 
